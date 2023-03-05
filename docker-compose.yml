@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  pubsub:
+    hostname: pubsub
+    image: pubsub
+    build:
+      context: "./docker/pubsub"
+      dockerfile: "Dockerfile"
+    ports:
+      - "8432:8432"
+    environment:
+      PUBSUB_PROJECT_ID: localproject
+      PUBSUB_LISTEN_ADDRESS: 0.0.0.0:8432
+      TOPICS_TO_CREATE: 'inTopic,outTopic'
+      SUBSCRIPTIONS_TO_CREATE: 'outTopic:subscriptionOut,inTopic:subscriptionIn'
+
